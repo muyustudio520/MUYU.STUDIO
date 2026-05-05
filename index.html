@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沐予 MUYU STUDIO</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; }
+
+:root {
+–cream: #F5F0EB;
+–dark-brown: #3D2B1F;
+–medium-brown: #7A4F3A;
+–rose-brown: #8B4A4A;
+–gold: #C4A882;
+–grey-warm: #D4C9BF;
+–text-main: #2C1F17;
+–text-secondary: #6B5143;
+}
+
+html, body {
+background-color: #F5F0EB;
+color: #2C1F17;
+font-family: ‘PingFang TC’, ‘Microsoft JhengHei’, ‘Noto Sans TC’, sans-serif;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+.hero {
+text-align: center;
+padding: 70px 20px 50px;
+position: relative;
+}
+.hero::after {
+content: ‘’;
+position: absolute;
+bottom: 0; left: 10%; right: 10%;
+height: 1px;
+background: linear-gradient(90deg, transparent, #C4A882, transparent);
+}
+.hero-subtitle { font-size: 0.85rem; letter-spacing: 0.3em; color: #C4A882; margin-bottom: 14px; font-style: italic; }
+.hero-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; letter-spacing: 0.2em; color: #3D2B1F; margin-bottom: 16px; }
+.hero-desc { font-size: 0.95rem; color: #6B5143; letter-spacing: 0.1em; }
+
+.nav-tabs {
+position: sticky; top: 0; z-index: 100;
+display: flex;
+background: rgba(245,240,235,0.97);
+border-bottom: 1px solid #D4C9BF;
+box-shadow: 0 2px 16px rgba(61,43,31,0.08);
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+}
+.nav-tab {
+padding: 16px 20px;
+font-size: 0.82rem;
+letter-spacing: 0.1em;
+color: #6B5143;
+cursor: pointer;
+border: none;
+background: none;
+white-space: nowrap;
+position: relative;
+-webkit-appearance: none;
+appearance: none;
+outline: none;
+-webkit-tap-highlight-color: transparent;
+}
+.nav-tab::after {
+content: ‘’;
+position: absolute;
+bottom: 0; left: 20%; right: 20%;
+height: 2px;
+background: #8B4A4A;
+transform: scaleX(0);
+transition: transform 0.3s;
+}
+.nav-tab.active { color: #8B4A4A; }
+.nav-tab.active::after { transform: scaleX(1); }
+
+.section { display: none; max-width: 780px; margin: 0 auto; padding: 50px 20px 120px; }
+.section.active { display: block; }
+
+.section-header { text-align: center; margin-bottom: 40px; }
+.section-header h2 { font-size: 1.7rem; font-weight: 400; letter-spacing: 0.2em; color: #3D2B1F; margin-bottom: 10px; }
+.section-header p { font-size: 0.85rem; color: #C4A882; letter-spacing: 0.1em; font-style: italic; }
+.divider { width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #C4A882, transparent); margin: 12px auto; }
+
+.card { background: rgba(255,252,249,0.9); border: 1px solid rgba(196,168,130,0.3); border-radius: 12px; padding: 24px 28px; margin-bottom: 18px; box-shadow: 0 4px 20px rgba(61,43,31,0.06); }
+
+.faq-item { margin-bottom: 22px; border-bottom: 1px solid rgba(196,168,130,0.2); padding-bottom: 22px; }
+.faq-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.faq-q { display: inline-block; background: rgba(139,74,74,0.1); border: 1px solid rgba(139,74,74,0.2); border-radius: 20px; padding: 6px 16px; font-size: 0.92rem; font-weight: 500; color: #8B4A4A; margin-bottom: 10px; }
+.faq-a { font-size: 0.9rem; line-height: 1.9; color: #6B5143; }
+
+.chat-container { display: flex; flex-direction: column; gap: 18px; }
+.chat-bubble { max-width: 78%; padding: 12px 18px; border-radius: 18px; font-size: 0.9rem; line-height: 1.8; }
+.chat-left { background: rgba(255,255,255,0.9); border: 1px solid #D4C9BF; border-radius: 4px 18px 18px 18px; align-self: flex-start; color: #3D2B1F; font-weight: 500; }
+.chat-right { background: rgba(196,168,130,0.12); border: 1px solid rgba(196,168,130,0.3); border-radius: 18px 4px 18px 18px; align-self: flex-end; color: #6B5143; }
+
+.timeline-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.timeline-badge { background: linear-gradient(135deg, #8B4A4A, #7A4F3A); color: white; padding: 5px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
+.timeline-title { font-size: 0.95rem; font-weight: 500; color: #3D2B1F; letter-spacing: 0.08em; }
+
+.bullet-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.bullet-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; line-height: 1.7; color: #6B5143; }
+
+.bullet-dot { color: #C4A882; font-size: 0.6rem; margin-top: 5px; flex-shrink: 0; line-height: 1; }
+
+.warning-box { background: rgba(139,74,74,0.07); border: 1px solid rgba(139,74,74,0.2); border-radius: 12px; padding: 22px 26px; margin-bottom: 18px; }
+.warning-box h3, .info-box h3 { font-size: 0.95rem; font-weight: 600; color: #8B4A4A; letter-spacing: 0.12em; margin-bottom: 14px; text-align: center; }
+.info-box { background: rgba(196,168,130,0.1); border: 1px solid rgba(196,168,130,0.25); border-radius: 12px; padding: 22px 26px; margin-bottom: 18px; }
+.highlight-box { background: rgba(139,74,74,0.08); border: 1px solid rgba(139,74,74,0.2); border-radius: 10px; padding: 14px 18px; text-align: center; font-size: 0.88rem; color: #8B4A4A; letter-spacing: 0.05em; line-height: 1.8; }
+
+.policy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+@media (max-width: 500px) { .policy-grid { grid-template-columns: 1fr; } }
+.policy-card { background: rgba(245,240,235,0.8); border: 1px solid rgba(196,168,130,0.25); border-radius: 10px; padding: 16px 18px; }
+.policy-card .label { font-size: 0.72rem; color: #C4A882; letter-spacing: 0.12em; margin-bottom: 5px; font-weight: 500; }
+.policy-card .value { font-size: 0.87rem; color: #2C1F17; line-height: 1.6; }
+
+.price-category { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.price-category-bar { width: 3px; height: 26px; background: linear-gradient(to bottom, #8B4A4A, #C4A882); border-radius: 2px; flex-shrink: 0; }
+.price-category h3 { font-size: 1.05rem; font-weight: 400; color: #3D2B1F; letter-spacing: 0.12em; }
+.price-section { margin-bottom: 28px; }
+.price-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(196,168,130,0.15); font-size: 0.9rem; }
+.price-row:last-child { border-bottom: none; }
+.price-row .item { color: #6B5143; }
+.price-row .price { font-size: 0.95rem; color: #8B4A4A; font-weight: 300; font-style: normal; font-family: -apple-system, ‘Helvetica Neue’, Arial, sans-serif; letter-spacing: 0.02em; }
+.price-row .price-note { font-size: 0.73rem; color: #C4A882; display: block; text-align: right; font-style: normal; font-weight: 300; font-family: -apple-system, ‘Helvetica Neue’, Arial, sans-serif; }
+.price-tag { font-size: 0.95rem; font-weight: 300; color: #8B4A4A; font-style: normal; font-family: -apple-system, ‘Helvetica Neue’, Arial, sans-serif; letter-spacing: 0.02em; }
+.price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 500px) { .price-grid { grid-template-columns: 1fr; } }
+.note-box { background: rgba(250,247,244,0.9); border-left: 3px solid #C4A882; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.83rem; color: #6B5143; line-height: 1.8; }
+
+footer { text-align: center; padding: 36px 20px 120px; border-top: 1px solid rgba(196,168,130,0.3); color: #C4A882; font-size: 0.8rem; letter-spacing: 0.2em; font-style: italic; }
+
+.booking-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; padding: 14px 24px 28px; background: linear-gradient(to top, #F5F0EB 65%, transparent); text-align: center; pointer-events: none; }
+.booking-bar a { display: inline-block; pointer-events: auto; padding: 16px 52px; background: linear-gradient(135deg, #8B4A4A, #7A4F3A); color: white !important; text-decoration: none; border-radius: 50px; font-size: 1rem; letter-spacing: 0.25em; font-weight: 500; box-shadow: 0 8px 28px rgba(139,74,74,0.4); }
+</style>
+
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-subtitle">MUYU STUDIO</div>
+  <h1 class="hero-title">沐 予</h1>
+  <p class="hero-desc">霧眉 · 美甲 · 角蛋白睫毛</p>
+</div>
+
+<nav class="nav-tabs">
+  <button class="nav-tab active" onclick="showSection('faq', this)">常見問題</button>
+  <button class="nav-tab" onclick="showSection('classroom', this)">霧眉小教室</button>
+  <button class="nav-tab" onclick="showSection('aftercare', this)">術後護理</button>
+  <button class="nav-tab" onclick="showSection('precautions', this)">霧眉施作須知</button>
+  <button class="nav-tab" onclick="showSection('nail-info', this)">美甲施作須知</button>
+  <button class="nav-tab" onclick="showSection('booking', this)">預約須知</button>
+  <button class="nav-tab" onclick="showSection('pricing-pmu', this)">霧眉價目表</button>
+  <button class="nav-tab" onclick="showSection('pricing-nail', this)">美甲價目表</button>
+  <button class="nav-tab" onclick="showSection('keratin', this)">角蛋白睫毛</button>
+</nav>
+
+<section id="faq" class="section active">
+  <div class="section-header">
+    <h2>霧 眉 常 見 問 題</h2>
+    <div class="divider"></div>
+    <p>Common Questions</p>
+  </div>
+  <div class="card">
+    <div class="faq-item">
+      <div class="faq-q">Q1 · 操作時會不會很痛？</div>
+      <p class="faq-a">術前會敷舒緩膏降低不適，僅有輕微刺感，每個人對痛的耐受不同，但都在可接受範圍內。</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Q2 · 做完當下眉毛會很深嗎？</div>
+      <p class="faq-a">初期顏色較深，約 3–5 天後結痂脫落，色澤會自然淡化、28 天內穩定。</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Q3 · 會不會結很厚的痂？會掉色嗎？</div>
+      <p class="faq-a">保濕得當會結薄痂，脫色是自然代謝現象，勿摳抓，可避免不均勻掉色。</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Q4 · 做完多久可以洗臉？</div>
+      <p class="faq-a">可正常洗臉，但須避開眉毛，建議用濕紙巾擦拭臉部其他區域。</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Q5 · 霧眉會不會變藍／變紅？會傷皮膚嗎？</div>
+      <p class="faq-a">合格操作不會變色或傷皮，變色多半來自劣質材料或錯誤操作。</p>
+    </div>
+  </div>
+</section>
+
+<section id="classroom" class="section">
+  <div class="section-header">
+    <h2>霧 眉 小 教 室</h2>
+    <div class="divider"></div>
+    <p>霧眉，就像給五官最剛好的修飾</p>
+  </div>
+  <div class="card">
+    <div class="chat-container">
+      <div class="chat-bubble chat-left">Q1 · 霧眉做完可以立刻出門嗎？</div>
+      <div class="chat-bubble chat-right">可以的，霧眉操作後不會有明顯傷口，頂多眉色稍深，但外觀自然不影響日常活動。</div>
+      <div class="chat-bubble chat-left">Q2 · 做完眉毛多久可以上妝？</div>
+      <div class="chat-bubble chat-right">建議至少 7 天後再上妝，避免刺激尚未癒合的皮膚或影響色乳穩定，等結痂自然脫落後最安全。</div>
+      <div class="chat-bubble chat-left">Q3 · 為什麼結痂後眉毛會變淡？</div>
+      <div class="chat-bubble chat-right">這是正常的修復過程，結痂脫落時眉毛會看起來較淡，大約 3–4 週會自然浮現並趨於穩定。</div>
+      <div class="chat-bubble chat-left">Q4 · 我是油肌、敏感肌，也可以霧眉嗎？</div>
+      <div class="chat-bubble chat-right">可以，但油肌留色可能會比較淡、修復期稍快；敏感肌建議避開過敏期或發炎期操作，效果會更理想。</div>
+      <div class="chat-bubble chat-left">Q5 · 術後多久可以運動、游泳、泡溫泉？</div>
+      <div class="chat-bubble chat-right">建議至少 7 天再大量運動、游泳或泡溫泉，避免汗水或濕氣影響修復與顏色穩定。</div>
+      <div class="chat-bubble chat-left">Q6 · 有人說霧眉後會一深一淺？</div>
+      <div class="chat-bubble chat-right">修復期若覺得眉色一深一淺，屬正常現象，因結痂速度不同，大約 28 天後顏色逐漸均勻，自然穩定。</div>
+    </div>
+  </div>
+</section>
+
+<section id="aftercare" class="section">
+  <div class="section-header">
+    <h2>霧 眉 術 後 護 理</h2>
+    <div class="divider"></div>
+    <p>Aftercare Instructions</p>
+  </div>
+  <div class="card">
+    <div class="timeline-header">
+      <span class="timeline-badge">DAY 1–3</span>
+      <span class="timeline-title">抗菌清潔・穩定保濕</span>
+    </div>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>每 2–3 小時使用棉片沾生理食鹽水，輕拭眉毛區域清除色乳與皮脂殘留</li>
+      <li><span class="bullet-dot">◆</span>每次清潔後薄擦修復膏，保持水潤防乾裂</li>
+      <li><span class="bullet-dot">◆</span>此階段為滲色穩定關鍵，應避免汗水、陽光</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="timeline-header">
+      <span class="timeline-badge">DAY 1–3</span>
+      <span class="timeline-title">微結痂期・禁碰觸</span>
+    </div>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>表皮開始結痂，為正常修復反應</li>
+      <li><span class="bullet-dot">◆</span>禁止摳抓／撥弄／摩擦結痂，以免脫色、留疤或感染</li>
+      <li><span class="bullet-dot">◆</span>若感乾癢，可短暫濕敷 5–10 分鐘＋輕薄修護膏保濕</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="timeline-header">
+      <span class="timeline-badge">DAY 6–7</span>
+      <span class="timeline-title">自然脫屑・留色觀察</span>
+    </div>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>脫痂過程可能造成眉色變淡、局部空洞，屬正常代謝現象</li>
+      <li><span class="bullet-dot">◆</span>持續早晚清潔與保濕，勿自行剝除結痂</li>
+      <li><span class="bullet-dot">◆</span>顏色約在第 28 天左右穩定，屆時可回診評估</li>
+    </ul>
+  </div>
+</section>
+
+<section id="precautions" class="section">
+  <div class="section-header">
+    <h2>霧 眉 施 作 須 知</h2>
+    <div class="divider"></div>
+    <p>為了您的安全與效果，請務必閱讀以下內容</p>
+  </div>
+  <div class="warning-box">
+    <h3>⚠ 以下狀況不適合操作</h3>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>眉毛部位有傷口、癬、皮膚病變者</li>
+      <li><span class="bullet-dot">◆</span>有血友病或正在服用抗凝血藥物者</li>
+      <li><span class="bullet-dot">◆</span>有 B 型／C 型肝炎、愛滋病、蠶豆症者</li>
+      <li><span class="bullet-dot">◆</span>有糖尿病、心臟病、高血壓等慢性疾病者</li>
+      <li><span class="bullet-dot">◆</span>有蟹足腫體質或不易癒合體質者</li>
+      <li><span class="bullet-dot">◆</span>生理期前後三天內（不建議施作）</li>
+      <li><span class="bullet-dot">◆</span>近期接受果酸／A 酸換膚療程、或皮膚過度敏感者</li>
+    </ul>
+  </div>
+  <div class="info-box">
+    <h3>施作前注意事項</h3>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>操作前請勿自行修眉，以利完整評估眉型</li>
+      <li><span class="bullet-dot">◆</span>前一晚避免飲酒與熬夜，降低出血與敏感狀況</li>
+      <li><span class="bullet-dot">◆</span>術前一週建議加強保濕，有助於色乳上色與留色效果</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    如有任何不確定的身體狀況<br>
+    建議預約前先私訊與小編討論評估！
+  </div>
+</section>
+
+<section id="nail-info" class="section">
+  <div class="section-header">
+    <h2>美 甲 施 作 須 知</h2>
+    <div class="divider"></div>
+    <p>在預約前，請先閱讀以下內容，讓我們一起完成漂亮又安心的作品</p>
+  </div>
+  <div class="card">
+    <div class="price-category">
+      <div class="price-category-bar"></div>
+      <h3>預約前須知</h3>
+    </div>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>採預約制，需先填寫表單並完成時間確認才算預約成功</li>
+      <li><span class="bullet-dot">◆</span>預約將酌收訂金（可折抵當日消費）</li>
+      <li><span class="bullet-dot">◆</span>保留時間為您預留，請勿臨時取消或放鳥</li>
+      <li><span class="bullet-dot">◆</span>如需更改時間，請提前 5–7 天告知</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="price-category">
+      <div class="price-category-bar"></div>
+      <h3>施作當日</h3>
+    </div>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>請準時抵達，遲到將影響施作內容或時間</li>
+      <li><span class="bullet-dot">◆</span>建議提前告知想做的款式或提供圖片</li>
+      <li><span class="bullet-dot">◆</span>款式複雜度不同，價格會有所調整</li>
+      <li><span class="bullet-dot">◆</span>施作時間約 1.5–3 小時（依款式而定）</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="price-category">
+      <div class="price-category-bar"></div>
+      <h3>施作前注意事項</h3>
+    </div>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>施作後 24 小時避免長時間泡水</li>
+      <li><span class="bullet-dot">◆</span>避免用指甲開罐頭、摳東西等施力行為</li>
+      <li><span class="bullet-dot">◆</span>建議定期回來卸甲與保養（約 3–4 週）</li>
+      <li><span class="bullet-dot">◆</span>如有翹起或不適請儘快聯繫，不建議自行處理</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="price-category">
+      <div class="price-category-bar"></div>
+      <h3>卸甲相關</h3>
+    </div>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>本店卸甲續作免費｜他店卸甲需另外收費</li>
+      <li><span class="bullet-dot">◆</span>請勿自行撕除，以免傷到真甲</li>
+    </ul>
+  </div>
+  <div class="info-box">
+    <h3>其它提醒</h3>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>過程中會拍攝作品（可事先告知是否露手）</li>
+      <li><span class="bullet-dot">◆</span>每個人的指甲狀況不同，持久度會有所差異</li>
+      <li><span class="bullet-dot">◆</span>完美主義者建議提前溝通風格與細節</li>
+    </ul>
+  </div>
+</section>
+
+<section id="booking" class="section">
+  <div class="section-header">
+    <h2>預 約 須 知</h2>
+    <div class="divider"></div>
+    <p>為了您的時間與權益，請務必閱讀以下內容</p>
+  </div>
+  <div class="card">
+    <div class="price-category">
+      <div class="price-category-bar"></div>
+      <h3>預約說明</h3>
+    </div>
+    <div class="policy-grid">
+      <div class="policy-card">
+        <div class="label">有事改期</div>
+        <div class="value">如需更改預約時間，請務必提前 3 天告知</div>
+      </div>
+      <div class="policy-card">
+        <div class="label">臨時取消</div>
+        <div class="value">預約當天臨時取消，訂金恕不退還</div>
+      </div>
+      <div class="policy-card">
+        <div class="label">遲到規定</div>
+        <div class="value">當天現場保留 10 分鐘</div>
+      </div>
+      <div class="policy-card">
+        <div class="label">超時取消</div>
+        <div class="value">遲到超過 10 分鐘視同取消資格，訂金恕不退還</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="price-category">
+      <div class="price-category-bar"></div>
+      <h3>訂金說明</h3>
+    </div>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>訂金金額：霧眉／美甲預約酌收 <strong style="color:#8B4A4A">$ 1,000 / 位</strong></li>
+      <li><span class="bullet-dot">◆</span>預約流程：請先與小編確認時間後再匯款</li>
+      <li><span class="bullet-dot">◆</span>完成預約：匯款後請回傳截圖給小編才算完成預約</li>
+      <li><span class="bullet-dot">◆</span>取消政策：臨時取消／遲到訂金恕不退還</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    預約前請務必詳閱內容<br>
+    完成預約即視為同意所有預約規範，若有疑問歡迎私訊小編！
+  </div>
+</section>
+
+<section id="pricing-pmu" class="section">
+  <div class="section-header">
+    <h2>霧 眉 價 目 表</h2>
+    <div class="divider"></div>
+    <p>模特體驗價 · 技術累積期間優惠，非永久價格</p>
+  </div>
+  <div class="card">
+    <div class="price-section">
+      <div class="price-category">
+        <div class="price-category-bar"></div>
+        <h3>眉 Eyebrow</h3>
+      </div>
+      <div class="price-row">
+        <span class="item">手工霧眉</span>
+        <div style="text-align:right"><span class="price">$ 2,800</span><span class="price-note">含補色 $ 4,200</span></div>
+      </div>
+      <div class="price-row">
+        <span class="item">機器霧眉</span>
+        <div style="text-align:right"><span class="price">$ 3,300</span><span class="price-note">含補色 $ 4,900</span></div>
+      </div>
+    </div>
+    <div style="height:1px;background:rgba(196,168,130,0.2);margin:20px 0"></div>
+    <div class="price-section">
+      <div class="price-category">
+        <div class="price-category-bar"></div>
+        <h3>眼 Eye</h3>
+      </div>
+      <div class="price-row">
+        <span class="item">美睫線</span>
+        <div style="text-align:right"><span class="price">$ 2,500</span><span class="price-note">含補色 $ 3,900</span></div>
+      </div>
+      <div class="price-row">
+        <span class="item">美瞳線</span>
+        <div style="text-align:right"><span class="price">$ 2,800</span><span class="price-note">含補色 $ 4,300</span></div>
+      </div>
+      <div class="price-row">
+        <span class="item">妝感眼線</span>
+        <div style="text-align:right"><span class="price">$ 3,200</span><span class="price-note">含補色 $ 4,800</span></div>
+      </div>
+    </div>
+    <div style="height:1px;background:rgba(196,168,130,0.2);margin:20px 0"></div>
+    <div class="price-section">
+      <div class="price-category">
+        <div class="price-category-bar"></div>
+        <h3>唇 Lip</h3>
+      </div>
+      <div class="price-row">
+        <span class="item">新式霧唇</span>
+        <div style="text-align:right"><span class="price">$ 4,500</span><span class="price-note">含補色 $ 7,000</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="price-category">
+      <div class="price-category-bar"></div>
+      <h3>補色與預約規則</h3>
+    </div>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>補色期限：3 個月內（可提前預約保留一次）</li>
+      <li><span class="bullet-dot">◆</span>超過期限：補色收「該項目原價 50%」</li>
+      <li><span class="bullet-dot">◆</span>若首次未含補色：加購補色費用 = 該項目原價 65%</li>
+    </ul>
+    <ul class="bullet-list" style="margin-top:14px">
+      <li><span class="bullet-dot">◆</span>操作前皆會依照臉型／五官比例客製設計</li>
+      <li><span class="bullet-dot">◆</span>過程皆為一次性拋棄式耗材，安心操作</li>
+      <li><span class="bullet-dot">◆</span>完成後會提供完整保養說明</li>
+    </ul>
+  </div>
+</section>
+
+<section id="pricing-nail" class="section">
+  <div class="section-header">
+    <h2>美 甲 價 目 表</h2>
+    <div class="divider"></div>
+    <p>手模價 限時體驗 · 依照您的手型、風格客製設計</p>
+  </div>
+  <div class="card">
+    <div class="price-category"><div class="price-category-bar"></div><h3>凝膠美甲</h3></div>
+    <div class="price-row"><span class="item">單色</span><span class="price-tag">$ 650</span></div>
+    <div class="price-row"><span class="item">貓眼／亮粉</span><span class="price-tag">$ 780</span></div>
+    <div class="price-row"><span class="item">漸層</span><span class="price-tag">$ 900</span></div>
+    <div class="price-row"><span class="item">法式</span><span class="price-tag">$ 1,000</span></div>
+    <div class="price-row"><span class="item">造型款 <span style="font-size:0.73rem;color:#C4A882">依款式複雜度報價</span></span><span class="price-tag">$ 1,100 up</span></div>
+  </div>
+  <div class="card">
+    <div class="price-category"><div class="price-category-bar"></div><h3>設計加購</h3></div>
+    <div class="price-row"><span class="item">跳色</span><span class="price-tag">$ 80 /指</span></div>
+    <div class="price-row"><span class="item">鑽飾 小鑽</span><span class="price-tag">$ 20 /顆</span></div>
+    <div class="price-row"><span class="item">鑽飾 大鑽</span><span class="price-tag">$ 40 /顆</span></div>
+    <div class="price-row"><span class="item">貼紙</span><span class="price-tag">$ 30 /指</span></div>
+    <div class="price-row"><span class="item">手繪 簡單</span><span class="price-tag">$ 80 /顆</span></div>
+    <div class="price-row"><span class="item">手繪 精緻</span><span class="price-tag">$ 120 /顆</span></div>
+  </div>
+  <div class="price-grid" style="gap:14px">
+    <div class="card" style="margin-bottom:0">
+      <div class="price-category"><div class="price-category-bar"></div><h3>延甲</h3></div>
+      <div class="price-row">
+        <span class="item" style="font-size:0.85rem">一般延甲</span>
+        <div style="text-align:right">
+          <span class="price">$ 120/指</span>
+          <span class="price-note">$ 999/十指</span>
+        </div>
+      </div>
+      <div class="price-row">
+        <span class="item" style="font-size:0.85rem">凝膠延甲</span>
+        <div style="text-align:right">
+          <span class="price">$ 180/指</span>
+          <span class="price-note">$ 1,599/十指</span>
+        </div>
+      </div>
+      <div class="price-row">
+        <span class="item" style="font-size:0.85rem">補裂甲</span>
+        <span class="price">$ 50 /指</span>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="price-category"><div class="price-category-bar"></div><h3>卸甲</h3></div>
+      <p style="font-size:0.73rem;color:#C4A882;margin-bottom:10px">含基礎清潔＋指緣修整</p>
+      <div class="price-row"><span class="item" style="font-size:0.85rem">本店卸甲續作</span><span class="price-tag" style="color:#8B4A4A;font-weight:600">免費</span></div>
+      <div class="price-row"><span class="item" style="font-size:0.85rem">本店卸甲不續作</span><span class="price-tag">$ 150</span></div>
+      <div class="price-row"><span class="item" style="font-size:0.85rem">他店卸甲續作</span><span class="price-tag">$ 200</span></div>
+      <div class="price-row"><span class="item" style="font-size:0.85rem">他店卸甲不續作</span><span class="price-tag">$ 400</span></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="price-category"><div class="price-category-bar"></div><h3>手部保養</h3></div>
+    <div class="price-row"><span class="item">深層保養（去角質＋保養＋按摩）</span><span class="price-tag">$ 500</span></div>
+    <div class="price-row"><span class="item">加購深層保養</span><span class="price-tag">$ 350</span></div>
+  </div>
+  <div class="card">
+    <div class="price-category"><div class="price-category-bar"></div><h3>貼心提醒</h3></div>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>採預約制，請提前預約</li>
+      <li><span class="bullet-dot">◆</span>需配合手部作品拍攝紀錄</li>
+      <li><span class="bullet-dot">◆</span>造型款依款式複雜度報價，可提供圖片討論款式</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="price-category"><div class="price-category-bar"></div><h3>美甲預約須知與規則</h3></div>
+    <div class="policy-grid">
+      <div class="policy-card"><div class="label">有事改期</div><div class="value">如需更改預約時間，請務必提前 3 天告知</div></div>
+      <div class="policy-card"><div class="label">臨時取消</div><div class="value">預約當天臨時取消，訂金恕不退還</div></div>
+      <div class="policy-card"><div class="label">遲到規定</div><div class="value">當天現場保留 10 分鐘</div></div>
+      <div class="policy-card"><div class="label">超時取消</div><div class="value">遲到超過 10 分鐘視同取消資格，訂金恕不退還</div></div>
+    </div>
+    <div class="highlight-box" style="margin-top:14px">
+      預約前請務必詳閱內容<br>
+      完成預約即視為同意所有預約規範，若有疑問歡迎私訊小編！
+    </div>
+  </div>
+</section>
+
+<section id="keratin" class="section">
+  <div class="section-header">
+    <h2>角 蛋 白 睫 毛</h2>
+    <div class="divider"></div>
+    <p>自然捲翹 · 無需睫毛夾的每一天</p>
+  </div>
+  <div class="card">
+    <div class="price-category"><div class="price-category-bar"></div><h3>服務價格</h3></div>
+    <div class="price-row"><span class="item">上睫毛</span><span class="price">$ 700</span></div>
+    <div class="price-row"><span class="item">上＋下睫毛</span><span class="price">$ 900</span></div>
+    <div class="price-row"><span class="item">新客體驗價</span><span class="price" style="color:#C4A882">$ 599</span></div>
+    <div class="note-box">
+      來店集點享回饋（限原價）<br>
+      滿 4 次，下次折抵 <strong style="color:#8B4A4A">$ 100</strong>
+    </div>
+  </div>
+  <div class="card">
+    <div class="price-category"><div class="price-category-bar"></div><h3>施作前請注意</h3></div>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>眼妝請避免（眉毛、口紅可以）</li>
+      <li><span class="bullet-dot">◆</span>施作過程約 1.5–2 小時</li>
+      <li><span class="bullet-dot">◆</span>睫毛上有殘留嫁接無法施做，需先卸除再來</li>
+    </ul>
+  </div>
+  <div class="warning-box">
+    <h3>⚠ 術後注意事項</h3>
+    <ul class="bullet-list">
+      <li><span class="bullet-dot">◆</span>4 小時勿碰水</li>
+      <li><span class="bullet-dot">◆</span>24 小時後再正常上妝</li>
+      <li><span class="bullet-dot">◆</span>若想嫁接睫毛，請於八週後再施做</li>
+      <li><span class="bullet-dot">◆</span>勿用力過度揉眼睛，避免睫毛受損歪斜</li>
+      <li><span class="bullet-dot">◆</span>48 小時內睫毛仍在定型期，請避免蒸氣室、溫泉等高溫場所，並盡量避免揉眼等易凹折睫毛的動作</li>
+      <li><span class="bullet-dot">◆</span>4 週後新睫毛長出呈現交錯情況下，即可回來做新的角蛋白！</li>
+    </ul>
+  </div>
+</section>
+
+<footer>✦ &nbsp; 沐予 MUYU STUDIO &nbsp; ✦</footer>
+
+<div class="booking-bar">
+  <a href="https://go.hotcake.app/g/XR9J76" target="_blank">✦ &nbsp; 立即預約 &nbsp; ✦</a>
+</div>
+
+<script>
+  function showSection(id, tab) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    if (tab) tab.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
