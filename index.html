@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -10,138 +9,141 @@
   a { color: inherit; text-decoration: none; }
   button { font-family: inherit; }
 
-:root {
-–cream: #F5F0EB;
-–dark-brown: #3D2B1F;
-–medium-brown: #7A4F3A;
-–rose-brown: #8B4A4A;
-–gold: #C4A882;
-–grey-warm: #D4C9BF;
-–text-main: #2C1F17;
-–text-secondary: #6B5143;
-}
+  :root {
+    --cream: #F5F0EB;
+    --dark-brown: #3D2B1F;
+    --medium-brown: #7A4F3A;
+    --rose-brown: #8B4A4A;
+    --gold: #C4A882;
+    --grey-warm: #D4C9BF;
+    --text-main: #2C1F17;
+    --text-secondary: #6B5143;
+  }
 
-html, body {
-background-color: #F5F0EB;
-color: #2C1F17;
-font-family: ‘PingFang TC’, ‘Microsoft JhengHei’, ‘Noto Sans TC’, sans-serif;
-min-height: 100vh;
-overflow-x: hidden;
-}
+  html, body {
+    background-color: #F5F0EB;
+    color: #2C1F17;
+    font-family: 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-.hero {
-text-align: center;
-padding: 70px 20px 50px;
-position: relative;
-}
-.hero::after {
-content: ‘’;
-position: absolute;
-bottom: 0; left: 10%; right: 10%;
-height: 1px;
-background: linear-gradient(90deg, transparent, #C4A882, transparent);
-}
-.hero-subtitle { font-size: 0.85rem; letter-spacing: 0.3em; color: #C4A882; margin-bottom: 14px; font-style: italic; }
-.hero-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; letter-spacing: 0.2em; color: #3D2B1F; margin-bottom: 16px; }
-.hero-desc { font-size: 0.95rem; color: #6B5143; letter-spacing: 0.1em; }
+  .hero {
+    text-align: center;
+    padding: 70px 20px 50px;
+    position: relative;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C4A882, transparent);
+  }
+  .hero-subtitle { font-size: 0.85rem; letter-spacing: 0.3em; color: #C4A882; margin-bottom: 14px; font-style: italic; }
+  .hero-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 300; letter-spacing: 0.2em; color: #3D2B1F; margin-bottom: 16px; }
+  .hero-desc { font-size: 0.95rem; color: #6B5143; letter-spacing: 0.1em; }
 
-.nav-tabs {
-position: sticky; top: 0; z-index: 100;
-display: flex;
-background: rgba(245,240,235,0.97);
-border-bottom: 1px solid #D4C9BF;
-box-shadow: 0 2px 16px rgba(61,43,31,0.08);
-overflow-x: auto;
--webkit-overflow-scrolling: touch;
-}
-.nav-tab {
-padding: 16px 20px;
-font-size: 0.82rem;
-letter-spacing: 0.1em;
-color: #6B5143;
-cursor: pointer;
-border: none;
-background: none;
-white-space: nowrap;
-position: relative;
--webkit-appearance: none;
-appearance: none;
-outline: none;
--webkit-tap-highlight-color: transparent;
-}
-.nav-tab::after {
-content: ‘’;
-position: absolute;
-bottom: 0; left: 20%; right: 20%;
-height: 2px;
-background: #8B4A4A;
-transform: scaleX(0);
-transition: transform 0.3s;
-}
-.nav-tab.active { color: #8B4A4A; }
-.nav-tab.active::after { transform: scaleX(1); }
+  .nav-tabs {
+    position: sticky; top: 0; z-index: 100;
+    display: flex;
+    background: rgba(245,240,235,0.97);
+    border-bottom: 1px solid #D4C9BF;
+    box-shadow: 0 2px 16px rgba(61,43,31,0.08);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* 隱藏預設滾動條 */
+    scrollbar-width: none; /* Firefox */
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; /* Chrome, Safari, Opera */ }
 
-.section { display: none; max-width: 780px; margin: 0 auto; padding: 50px 20px 120px; }
-.section.active { display: block; }
+  .nav-tab {
+    padding: 16px 20px;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    color: #6B5143;
+    cursor: pointer;
+    border: none;
+    background: none;
+    white-space: nowrap;
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .nav-tab::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 20%; right: 20%;
+    height: 2px;
+    background: #8B4A4A;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .nav-tab.active { color: #8B4A4A; }
+  .nav-tab.active::after { transform: scaleX(1); }
 
-.section-header { text-align: center; margin-bottom: 40px; }
-.section-header h2 { font-size: 1.7rem; font-weight: 400; letter-spacing: 0.2em; color: #3D2B1F; margin-bottom: 10px; }
-.section-header p { font-size: 0.85rem; color: #C4A882; letter-spacing: 0.1em; font-style: italic; }
-.divider { width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #C4A882, transparent); margin: 12px auto; }
+  .section { display: none; max-width: 780px; margin: 0 auto; padding: 50px 20px 120px; }
+  .section.active { display: block; }
 
-.card { background: rgba(255,252,249,0.9); border: 1px solid rgba(196,168,130,0.3); border-radius: 12px; padding: 24px 28px; margin-bottom: 18px; box-shadow: 0 4px 20px rgba(61,43,31,0.06); }
+  .section-header { text-align: center; margin-bottom: 40px; }
+  .section-header h2 { font-size: 1.7rem; font-weight: 400; letter-spacing: 0.2em; color: #3D2B1F; margin-bottom: 10px; }
+  .section-header p { font-size: 0.85rem; color: #C4A882; letter-spacing: 0.1em; font-style: italic; }
+  .divider { width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #C4A882, transparent); margin: 12px auto; }
 
-.faq-item { margin-bottom: 22px; border-bottom: 1px solid rgba(196,168,130,0.2); padding-bottom: 22px; }
-.faq-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-.faq-q { display: inline-block; background: rgba(139,74,74,0.1); border: 1px solid rgba(139,74,74,0.2); border-radius: 20px; padding: 6px 16px; font-size: 0.92rem; font-weight: 500; color: #8B4A4A; margin-bottom: 10px; }
-.faq-a { font-size: 0.9rem; line-height: 1.9; color: #6B5143; }
+  .card { background: rgba(255,252,249,0.9); border: 1px solid rgba(196,168,130,0.3); border-radius: 12px; padding: 24px 28px; margin-bottom: 18px; box-shadow: 0 4px 20px rgba(61,43,31,0.06); }
 
-.chat-container { display: flex; flex-direction: column; gap: 18px; }
-.chat-bubble { max-width: 78%; padding: 12px 18px; border-radius: 18px; font-size: 0.9rem; line-height: 1.8; }
-.chat-left { background: rgba(255,255,255,0.9); border: 1px solid #D4C9BF; border-radius: 4px 18px 18px 18px; align-self: flex-start; color: #3D2B1F; font-weight: 500; }
-.chat-right { background: rgba(196,168,130,0.12); border: 1px solid rgba(196,168,130,0.3); border-radius: 18px 4px 18px 18px; align-self: flex-end; color: #6B5143; }
+  .faq-item { margin-bottom: 22px; border-bottom: 1px solid rgba(196,168,130,0.2); padding-bottom: 22px; }
+  .faq-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .faq-q { display: inline-block; background: rgba(139,74,74,0.1); border: 1px solid rgba(139,74,74,0.2); border-radius: 20px; padding: 6px 16px; font-size: 0.92rem; font-weight: 500; color: #8B4A4A; margin-bottom: 10px; }
+  .faq-a { font-size: 0.9rem; line-height: 1.9; color: #6B5143; }
 
-.timeline-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.timeline-badge { background: linear-gradient(135deg, #8B4A4A, #7A4F3A); color: white; padding: 5px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
-.timeline-title { font-size: 0.95rem; font-weight: 500; color: #3D2B1F; letter-spacing: 0.08em; }
+  .chat-container { display: flex; flex-direction: column; gap: 18px; }
+  .chat-bubble { max-width: 78%; padding: 12px 18px; border-radius: 18px; font-size: 0.9rem; line-height: 1.8; }
+  .chat-left { background: rgba(255,255,255,0.9); border: 1px solid #D4C9BF; border-radius: 4px 18px 18px 18px; align-self: flex-start; color: #3D2B1F; font-weight: 500; }
+  .chat-right { background: rgba(196,168,130,0.12); border: 1px solid rgba(196,168,130,0.3); border-radius: 18px 4px 18px 18px; align-self: flex-end; color: #6B5143; }
 
-.bullet-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.bullet-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; line-height: 1.7; color: #6B5143; }
+  .timeline-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .timeline-badge { background: linear-gradient(135deg, #8B4A4A, #7A4F3A); color: white; padding: 5px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
+  .timeline-title { font-size: 0.95rem; font-weight: 500; color: #3D2B1F; letter-spacing: 0.08em; }
 
-.bullet-dot { color: #C4A882; font-size: 0.6rem; margin-top: 5px; flex-shrink: 0; line-height: 1; }
+  .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .bullet-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; line-height: 1.7; color: #6B5143; }
 
-.warning-box { background: rgba(139,74,74,0.07); border: 1px solid rgba(139,74,74,0.2); border-radius: 12px; padding: 22px 26px; margin-bottom: 18px; }
-.warning-box h3, .info-box h3 { font-size: 0.95rem; font-weight: 600; color: #8B4A4A; letter-spacing: 0.12em; margin-bottom: 14px; text-align: center; }
-.info-box { background: rgba(196,168,130,0.1); border: 1px solid rgba(196,168,130,0.25); border-radius: 12px; padding: 22px 26px; margin-bottom: 18px; }
-.highlight-box { background: rgba(139,74,74,0.08); border: 1px solid rgba(139,74,74,0.2); border-radius: 10px; padding: 14px 18px; text-align: center; font-size: 0.88rem; color: #8B4A4A; letter-spacing: 0.05em; line-height: 1.8; }
+  .bullet-dot { color: #C4A882; font-size: 0.6rem; margin-top: 5px; flex-shrink: 0; line-height: 1; }
 
-.policy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
-@media (max-width: 500px) { .policy-grid { grid-template-columns: 1fr; } }
-.policy-card { background: rgba(245,240,235,0.8); border: 1px solid rgba(196,168,130,0.25); border-radius: 10px; padding: 16px 18px; }
-.policy-card .label { font-size: 0.72rem; color: #C4A882; letter-spacing: 0.12em; margin-bottom: 5px; font-weight: 500; }
-.policy-card .value { font-size: 0.87rem; color: #2C1F17; line-height: 1.6; }
+  .warning-box { background: rgba(139,74,74,0.07); border: 1px solid rgba(139,74,74,0.2); border-radius: 12px; padding: 22px 26px; margin-bottom: 18px; }
+  .warning-box h3, .info-box h3 { font-size: 0.95rem; font-weight: 600; color: #8B4A4A; letter-spacing: 0.12em; margin-bottom: 14px; text-align: center; }
+  .info-box { background: rgba(196,168,130,0.1); border: 1px solid rgba(196,168,130,0.25); border-radius: 12px; padding: 22px 26px; margin-bottom: 18px; }
+  .highlight-box { background: rgba(139,74,74,0.08); border: 1px solid rgba(139,74,74,0.2); border-radius: 10px; padding: 14px 18px; text-align: center; font-size: 0.88rem; color: #8B4A4A; letter-spacing: 0.05em; line-height: 1.8; }
 
-.price-category { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-.price-category-bar { width: 3px; height: 26px; background: linear-gradient(to bottom, #8B4A4A, #C4A882); border-radius: 2px; flex-shrink: 0; }
-.price-category h3 { font-size: 1.05rem; font-weight: 400; color: #3D2B1F; letter-spacing: 0.12em; }
-.price-section { margin-bottom: 28px; }
-.price-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(196,168,130,0.15); font-size: 0.9rem; }
-.price-row:last-child { border-bottom: none; }
-.price-row .item { color: #6B5143; }
-.price-row .price { font-size: 0.95rem; color: #8B4A4A; font-weight: 300; font-style: normal; font-family: -apple-system, ‘Helvetica Neue’, Arial, sans-serif; letter-spacing: 0.02em; }
-.price-row .price-note { font-size: 0.73rem; color: #C4A882; display: block; text-align: right; font-style: normal; font-weight: 300; font-family: -apple-system, ‘Helvetica Neue’, Arial, sans-serif; }
-.price-tag { font-size: 0.95rem; font-weight: 300; color: #8B4A4A; font-style: normal; font-family: -apple-system, ‘Helvetica Neue’, Arial, sans-serif; letter-spacing: 0.02em; }
-.price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 500px) { .price-grid { grid-template-columns: 1fr; } }
-.note-box { background: rgba(250,247,244,0.9); border-left: 3px solid #C4A882; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.83rem; color: #6B5143; line-height: 1.8; }
+  .policy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+  @media (max-width: 500px) { .policy-grid { grid-template-columns: 1fr; } }
+  .policy-card { background: rgba(245,240,235,0.8); border: 1px solid rgba(196,168,130,0.25); border-radius: 10px; padding: 16px 18px; }
+  .policy-card .label { font-size: 0.72rem; color: #C4A882; letter-spacing: 0.12em; margin-bottom: 5px; font-weight: 500; }
+  .policy-card .value { font-size: 0.87rem; color: #2C1F17; line-height: 1.6; }
 
-footer { text-align: center; padding: 36px 20px 120px; border-top: 1px solid rgba(196,168,130,0.3); color: #C4A882; font-size: 0.8rem; letter-spacing: 0.2em; font-style: italic; }
+  .price-category { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .price-category-bar { width: 3px; height: 26px; background: linear-gradient(to bottom, #8B4A4A, #C4A882); border-radius: 2px; flex-shrink: 0; }
+  .price-category h3 { font-size: 1.05rem; font-weight: 400; color: #3D2B1F; letter-spacing: 0.12em; }
+  .price-section { margin-bottom: 28px; }
+  .price-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(196,168,130,0.15); font-size: 0.9rem; }
+  .price-row:last-child { border-bottom: none; }
+  .price-row .item { color: #6B5143; }
+  .price-row .price { font-size: 0.95rem; color: #8B4A4A; font-weight: 300; font-style: normal; font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.02em; }
+  .price-row .price-note { font-size: 0.73rem; color: #C4A882; display: block; text-align: right; font-style: normal; font-weight: 300; font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; }
+  .price-tag { font-size: 0.95rem; font-weight: 300; color: #8B4A4A; font-style: normal; font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; letter-spacing: 0.02em; }
+  .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 500px) { .price-grid { grid-template-columns: 1fr; } }
+  .note-box { background: rgba(250,247,244,0.9); border-left: 3px solid #C4A882; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.83rem; color: #6B5143; line-height: 1.8; }
 
-.booking-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; padding: 14px 12px 28px; background: linear-gradient(to top, #F5F0EB 65%, transparent); text-align: center; pointer-events: none; display: flex; gap: 8px; justify-content: center; }
-.booking-bar a { display: inline-block; pointer-events: auto; padding: 14px 0; width: 32%; background: linear-gradient(135deg, #8B4A4A, #7A4F3A); color: white !important; text-decoration: none; border-radius: 50px; font-size: 0.8rem; letter-spacing: 0.1em; font-weight: 500; box-shadow: 0 8px 28px rgba(139,74,74,0.4); text-align: center; }
-.booking-bar a.line-btn { background: linear-gradient(135deg, #06C755, #00A843); box-shadow: 0 8px 28px rgba(6,199,85,0.35); }
+  footer { text-align: center; padding: 36px 20px 120px; border-top: 1px solid rgba(196,168,130,0.3); color: #C4A882; font-size: 0.8rem; letter-spacing: 0.2em; font-style: italic; }
+
+  .booking-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 999; padding: 14px 12px 28px; background: linear-gradient(to top, #F5F0EB 65%, transparent); text-align: center; pointer-events: none; display: flex; gap: 8px; justify-content: center; }
+  .booking-bar a { display: inline-block; pointer-events: auto; padding: 14px 0; width: 32%; background: linear-gradient(135deg, #8B4A4A, #7A4F3A); color: white !important; text-decoration: none; border-radius: 50px; font-size: 0.8rem; letter-spacing: 0.1em; font-weight: 500; box-shadow: 0 8px 28px rgba(139,74,74,0.4); text-align: center; }
+  .booking-bar a.line-btn { background: linear-gradient(135deg, #06C755, #00A843); box-shadow: 0 8px 28px rgba(6,199,85,0.35); }
 </style>
-
 </head>
 <body>
 
@@ -151,16 +153,17 @@ footer { text-align: center; padding: 36px 20px 120px; border-top: 1px solid rgb
   <p class="hero-desc">霧眉 · 美甲 · 角蛋白睫毛</p>
 </div>
 
+<!-- 移除 Inline onclick 屬性，改用 data-target，交由 JS 統一管理 -->
 <nav class="nav-tabs">
-  <button class="nav-tab active" onclick="showSection('faq', this)">常見問題</button>
-  <button class="nav-tab" onclick="showSection('classroom', this)">霧眉小教室</button>
-  <button class="nav-tab" onclick="showSection('aftercare', this)">術後護理</button>
-  <button class="nav-tab" onclick="showSection('precautions', this)">霧眉施作須知</button>
-  <button class="nav-tab" onclick="showSection('nail-info', this)">美甲施作須知</button>
-  <button class="nav-tab" onclick="showSection('booking', this)">預約須知</button>
-  <button class="nav-tab" onclick="showSection('pricing-pmu', this)">霧眉價目表</button>
-  <button class="nav-tab" onclick="showSection('pricing-nail', this)">美甲價目表</button>
-  <button class="nav-tab" onclick="showSection('keratin', this)">角蛋白睫毛</button>
+  <button class="nav-tab active" data-target="faq">常見問題</button>
+  <button class="nav-tab" data-target="classroom">霧眉小教室</button>
+  <button class="nav-tab" data-target="aftercare">術後護理</button>
+  <button class="nav-tab" data-target="precautions">霧眉施作須知</button>
+  <button class="nav-tab" data-target="nail-info">美甲施作須知</button>
+  <button class="nav-tab" data-target="booking">預約須知</button>
+  <button class="nav-tab" data-target="pricing-pmu">霧眉價目表</button>
+  <button class="nav-tab" data-target="pricing-nail">美甲價目表</button>
+  <button class="nav-tab" data-target="keratin">角蛋白睫毛</button>
 </nav>
 
 <section id="faq" class="section active">
@@ -490,8 +493,8 @@ footer { text-align: center; padding: 36px 20px 120px; border-top: 1px solid rgb
     <div class="price-row"><span class="item">鑽飾 小鑽</span><span class="price-tag">$ 20 /顆</span></div>
     <div class="price-row"><span class="item">鑽飾 大鑽</span><span class="price-tag">$ 40 /顆</span></div>
     <div class="price-row"><span class="item">貼紙</span><span class="price-tag">$ 30 /指</span></div>
-    <div class="price-row"><span class="item">手繪 簡單</span><span class="price-tag">$ 80 /顆</span></div>
-    <div class="price-row"><span class="item">手繪 精緻</span><span class="price-tag">$ 120 /顆</span></div>
+    <div class="price-row"><span class="item">手繪 簡單</span><span class="price-tag">$ 80 /指</span></div>
+    <div class="price-row"><span class="item">手繪 精緻</span><span class="price-tag">$ 120 /指</span></div>
   </div>
   <div class="price-grid" style="gap:14px">
     <div class="card" style="margin-bottom:0">
@@ -499,15 +502,15 @@ footer { text-align: center; padding: 36px 20px 120px; border-top: 1px solid rgb
       <div class="price-row">
         <span class="item" style="font-size:0.85rem">一般延甲</span>
         <div style="text-align:right">
-          <span class="price">$ 120/指</span>
-          <span class="price-note">$ 999/十指</span>
+          <span class="price">$ 100/指</span>
+          <span class="price-note">$ 899/十指</span>
         </div>
       </div>
       <div class="price-row">
-        <span class="item" style="font-size:0.85rem">凝膠延甲</span>
+        <span class="item" style="font-size:0.85rem">水晶延甲</span>
         <div style="text-align:right">
-          <span class="price">$ 180/指</span>
-          <span class="price-note">$ 1,599/十指</span>
+          <span class="price">$ 150/指</span>
+          <span class="price-note">$ 1,399/十指</span>
         </div>
       </div>
       <div class="price-row">
@@ -598,14 +601,33 @@ footer { text-align: center; padding: 36px 20px 120px; border-top: 1px solid rgb
 </div>
 
 <script>
-  function showSection(id, tab) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    if (tab) tab.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-</script>
+  // 使用現代的 EventListener 代替 Inline onClick，解決潛在的變數衝突問題
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-target');
+      
+      // 1. 切換 Section 顯示狀態
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
+      
+      // 2. 切換 Tab 活躍狀態
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      
+      // 3. 自動將選中的頁籤置中（手機版橫向滑動體驗極佳）
+      this.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 
+      // 4. 平滑滾動回頂部（扣除 nav 欄位避免遮擋）
+      const navHeight = document.querySelector('.nav-tabs').offsetHeight || 50;
+      window.scrollTo({ 
+        top: 0, 
+        behavior: 'smooth' 
+      });
+    });
+  });
+</script>
 </body>
 </html>
