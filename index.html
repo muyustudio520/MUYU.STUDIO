@@ -9,24 +9,16 @@
   a { color: inherit; text-decoration: none; }
   button { font-family: inherit; }
 
-  :root {
-    --cream: #F5F0EB;
-    --dark-brown: #3D2B1F;
-    --medium-brown: #7A4F3A;
-    --rose-brown: #8B4A4A;
-    --gold: #C4A882;
-    --grey-warm: #D4C9BF;
-    --text-main: #2C1F17;
-    --text-secondary: #6B5143;
-  }
-
   html, body {
-    background-color: #F5F0EB;
+    background-color: #F5F0EB !important;
     color: #2C1F17;
     font-family: 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
   }
+
+  html { background: #F5F0EB !important; }
+  body { background: #F5F0EB !important; }
 
   .hero {
     text-align: center;
@@ -88,6 +80,18 @@
   .section-header p { font-size: 0.85rem; color: #C4A882; letter-spacing: 0.1em; font-style: italic; }
   .divider { width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #C4A882, transparent); margin: 12px auto; }
 
+  .section-divider {
+    display: flex; align-items: center; gap: 16px;
+    margin: 36px 0 28px;
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, #C4A882, transparent);
+  }
+  .section-divider span {
+    font-size: 0.85rem; color: #C4A882; letter-spacing: 0.2em; white-space: nowrap; font-style: italic;
+  }
+
   .card { background: rgba(255,252,249,0.9); border: 1px solid rgba(196,168,130,0.3); border-radius: 12px; padding: 24px 28px; margin-bottom: 18px; box-shadow: 0 4px 20px rgba(61,43,31,0.06); }
 
   .faq-item { margin-bottom: 22px; border-bottom: 1px solid rgba(196,168,130,0.2); padding-bottom: 22px; }
@@ -106,7 +110,6 @@
 
   .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .bullet-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; line-height: 1.7; color: #6B5143; }
-
   .bullet-dot { color: #C4A882; font-size: 0.6rem; margin-top: 5px; flex-shrink: 0; line-height: 1; }
 
   .warning-box { background: rgba(139,74,74,0.07); border: 1px solid rgba(139,74,74,0.2); border-radius: 12px; padding: 22px 26px; margin-bottom: 18px; }
@@ -150,20 +153,19 @@
 </div>
 
 <nav class="nav-tabs">
-  <button class="nav-tab active" onclick="showSection('faq', this)">常見問題</button>
-  <button class="nav-tab" onclick="showSection('classroom', this)">霧眉小教室</button>
+  <button class="nav-tab active" onclick="showSection('faq', this)">霧眉問答</button>
   <button class="nav-tab" onclick="showSection('aftercare', this)">術後護理</button>
-  <button class="nav-tab" onclick="showSection('precautions', this)">霧眉施作須知</button>
-  <button class="nav-tab" onclick="showSection('nail-info', this)">美甲施作須知</button>
+  <button class="nav-tab" onclick="showSection('precautions', this)">施作須知</button>
   <button class="nav-tab" onclick="showSection('booking', this)">預約須知</button>
   <button class="nav-tab" onclick="showSection('pricing-pmu', this)">霧眉價目表</button>
   <button class="nav-tab" onclick="showSection('pricing-nail', this)">美甲價目表</button>
   <button class="nav-tab" onclick="showSection('keratin', this)">角蛋白睫毛</button>
 </nav>
 
+<!-- 霧眉問答（常見問題 + 小教室合併） -->
 <section id="faq" class="section active">
   <div class="section-header">
-    <h2>霧 眉 常 見 問 題</h2>
+    <h2>霧 眉 問 答</h2>
     <div class="divider"></div>
     <p>Common Questions</p>
   </div>
@@ -189,32 +191,28 @@
       <p class="faq-a">合格操作不會變色或傷皮，變色多半來自劣質材料或錯誤操作。</p>
     </div>
   </div>
-</section>
 
-<section id="classroom" class="section">
-  <div class="section-header">
-    <h2>霧 眉 小 教 室</h2>
-    <div class="divider"></div>
-    <p>霧眉，就像給五官最剛好的修飾</p>
-  </div>
+  <div class="section-divider"><span>霧眉小教室</span></div>
+
   <div class="card">
     <div class="chat-container">
-      <div class="chat-bubble chat-left">Q1 · 霧眉做完可以立刻出門嗎？</div>
+      <div class="chat-bubble chat-left">Q6 · 霧眉做完可以立刻出門嗎？</div>
       <div class="chat-bubble chat-right">可以的，霧眉操作後不會有明顯傷口，頂多眉色稍深，但外觀自然不影響日常活動。</div>
-      <div class="chat-bubble chat-left">Q2 · 做完眉毛多久可以上妝？</div>
+      <div class="chat-bubble chat-left">Q7 · 做完眉毛多久可以上妝？</div>
       <div class="chat-bubble chat-right">建議至少 7 天後再上妝，避免刺激尚未癒合的皮膚或影響色乳穩定，等結痂自然脫落後最安全。</div>
-      <div class="chat-bubble chat-left">Q3 · 為什麼結痂後眉毛會變淡？</div>
+      <div class="chat-bubble chat-left">Q8 · 為什麼結痂後眉毛會變淡？</div>
       <div class="chat-bubble chat-right">這是正常的修復過程，結痂脫落時眉毛會看起來較淡，大約 3–4 週會自然浮現並趨於穩定。</div>
-      <div class="chat-bubble chat-left">Q4 · 我是油肌、敏感肌，也可以霧眉嗎？</div>
+      <div class="chat-bubble chat-left">Q9 · 我是油肌、敏感肌，也可以霧眉嗎？</div>
       <div class="chat-bubble chat-right">可以，但油肌留色可能會比較淡、修復期稍快；敏感肌建議避開過敏期或發炎期操作，效果會更理想。</div>
-      <div class="chat-bubble chat-left">Q5 · 術後多久可以運動、游泳、泡溫泉？</div>
+      <div class="chat-bubble chat-left">Q10 · 術後多久可以運動、游泳、泡溫泉？</div>
       <div class="chat-bubble chat-right">建議至少 7 天再大量運動、游泳或泡溫泉，避免汗水或濕氣影響修復與顏色穩定。</div>
-      <div class="chat-bubble chat-left">Q6 · 有人說霧眉後會一深一淺？</div>
+      <div class="chat-bubble chat-left">Q11 · 有人說霧眉後會一深一淺？</div>
       <div class="chat-bubble chat-right">修復期若覺得眉色一深一淺，屬正常現象，因結痂速度不同，大約 28 天後顏色逐漸均勻，自然穩定。</div>
     </div>
   </div>
 </section>
 
+<!-- 術後護理 -->
 <section id="aftercare" class="section">
   <div class="section-header">
     <h2>霧 眉 術 後 護 理</h2>
@@ -256,12 +254,16 @@
   </div>
 </section>
 
+<!-- 施作須知（霧眉 + 美甲合併） -->
 <section id="precautions" class="section">
   <div class="section-header">
-    <h2>霧 眉 施 作 須 知</h2>
+    <h2>施 作 須 知</h2>
     <div class="divider"></div>
     <p>為了您的安全與效果，請務必閱讀以下內容</p>
   </div>
+
+  <div class="section-divider"><span>霧眉施作須知</span></div>
+
   <div class="warning-box">
     <h3>⚠ 以下狀況不適合操作</h3>
     <ul class="bullet-list">
@@ -286,19 +288,11 @@
     如有任何不確定的身體狀況<br>
     建議預約前先私訊與小編討論評估！
   </div>
-</section>
 
-<section id="nail-info" class="section">
-  <div class="section-header">
-    <h2>美 甲 施 作 須 知</h2>
-    <div class="divider"></div>
-    <p>在預約前，請先閱讀以下內容，讓我們一起完成漂亮又安心的作品</p>
-  </div>
+  <div class="section-divider"><span>美甲施作須知</span></div>
+
   <div class="card">
-    <div class="price-category">
-      <div class="price-category-bar"></div>
-      <h3>預約前須知</h3>
-    </div>
+    <div class="price-category"><div class="price-category-bar"></div><h3>預約前須知</h3></div>
     <ul class="bullet-list">
       <li><span class="bullet-dot">◆</span>採預約制，需先填寫表單並完成時間確認才算預約成功</li>
       <li><span class="bullet-dot">◆</span>預約將酌收訂金（可折抵當日消費）</li>
@@ -307,10 +301,7 @@
     </ul>
   </div>
   <div class="card">
-    <div class="price-category">
-      <div class="price-category-bar"></div>
-      <h3>施作當日</h3>
-    </div>
+    <div class="price-category"><div class="price-category-bar"></div><h3>施作當日</h3></div>
     <ul class="bullet-list">
       <li><span class="bullet-dot">◆</span>請準時抵達，遲到將影響施作內容或時間</li>
       <li><span class="bullet-dot">◆</span>建議提前告知想做的款式或提供圖片</li>
@@ -319,10 +310,7 @@
     </ul>
   </div>
   <div class="card">
-    <div class="price-category">
-      <div class="price-category-bar"></div>
-      <h3>施作前注意事項</h3>
-    </div>
+    <div class="price-category"><div class="price-category-bar"></div><h3>施作前注意事項</h3></div>
     <ul class="bullet-list">
       <li><span class="bullet-dot">◆</span>施作後 24 小時避免長時間泡水</li>
       <li><span class="bullet-dot">◆</span>避免用指甲開罐頭、摳東西等施力行為</li>
@@ -331,10 +319,7 @@
     </ul>
   </div>
   <div class="card">
-    <div class="price-category">
-      <div class="price-category-bar"></div>
-      <h3>卸甲相關</h3>
-    </div>
+    <div class="price-category"><div class="price-category-bar"></div><h3>卸甲相關</h3></div>
     <ul class="bullet-list">
       <li><span class="bullet-dot">◆</span>本店卸甲續作免費｜他店卸甲需另外收費</li>
       <li><span class="bullet-dot">◆</span>請勿自行撕除，以免傷到真甲</li>
@@ -350,6 +335,7 @@
   </div>
 </section>
 
+<!-- 預約須知 -->
 <section id="booking" class="section">
   <div class="section-header">
     <h2>預 約 須 知</h2>
@@ -357,10 +343,7 @@
     <p>為了您的時間與權益，請務必閱讀以下內容</p>
   </div>
   <div class="card">
-    <div class="price-category">
-      <div class="price-category-bar"></div>
-      <h3>預約說明</h3>
-    </div>
+    <div class="price-category"><div class="price-category-bar"></div><h3>預約說明</h3></div>
     <div class="policy-grid">
       <div class="policy-card">
         <div class="label">有事改期</div>
@@ -370,23 +353,23 @@
         <div class="label">臨時取消</div>
         <div class="value">預約當天臨時取消，訂金恕不退還</div>
       </div>
-      <div class="policy-card">
-        <div class="label">遲到規定</div>
-        <div class="value">當天現場保留 10 分鐘</div>
-      </div>
-      <div class="policy-card">
-        <div class="label">超時取消</div>
-        <div class="value">遲到超過 10 分鐘視同取消資格，訂金恕不退還</div>
-      </div>
+    </div>
+    <div class="policy-card" style="margin-bottom:14px">
+      <div class="label">超時取消</div>
+      <div class="value">遲到超過 10 分鐘視同取消資格，訂金恕不退還</div>
+    </div>
+    <div class="info-box" style="margin-bottom:0">
+      <h3>預約方式</h3>
+      <ul class="bullet-list">
+        <li><span class="bullet-dot">◆</span>完成線上預約後，請加入官方 LINE 回傳姓名與預約時段，確認後才算預約成功</li>
+        <li><span class="bullet-dot">◆</span>避免系統無法顯示姓名，請務必主動私訊官方 LINE</li>
+      </ul>
     </div>
   </div>
   <div class="card">
-    <div class="price-category">
-      <div class="price-category-bar"></div>
-      <h3>訂金說明</h3>
-    </div>
+    <div class="price-category"><div class="price-category-bar"></div><h3>訂金說明</h3></div>
     <ul class="bullet-list">
-      <li><span class="bullet-dot">◆</span>訂金金額：霧眉／美甲預約酌收 <strong style="color:#8B4A4A">$ 1,000 / 位</strong></li>
+      <li><span class="bullet-dot">◆</span>訂金金額：霧眉／美甲預約酌收 <strong style="color:#8B4A4A">$ 500 / 位</strong></li>
       <li><span class="bullet-dot">◆</span>預約流程：請先與小編確認時間後再匯款</li>
       <li><span class="bullet-dot">◆</span>完成預約：匯款後請回傳截圖給小編才算完成預約</li>
       <li><span class="bullet-dot">◆</span>取消政策：臨時取消／遲到訂金恕不退還</li>
@@ -398,6 +381,7 @@
   </div>
 </section>
 
+<!-- 霧眉價目表 -->
 <section id="pricing-pmu" class="section">
   <div class="section-header">
     <h2>霧 眉 價 目 表</h2>
@@ -406,55 +390,43 @@
   </div>
   <div class="card">
     <div class="price-section">
-      <div class="price-category">
-        <div class="price-category-bar"></div>
-        <h3>眉 Eyebrow</h3>
-      </div>
+      <div class="price-category"><div class="price-category-bar"></div><h3>眉 Eyebrow</h3></div>
       <div class="price-row">
         <span class="item">手工霧眉</span>
-        <div style="text-align:right"><span class="price">$ 2,800</span><span class="price-note">含補色 $ 4,200</span></div>
+        <div style="text-align:right"><span class="price">$ 3,500</span><span class="price-note">含補色 $ 4,800</span></div>
       </div>
       <div class="price-row">
         <span class="item">機器霧眉</span>
-        <div style="text-align:right"><span class="price">$ 3,300</span><span class="price-note">含補色 $ 4,900</span></div>
+        <div style="text-align:right"><span class="price">$ 4,200</span><span class="price-note">含補色 $ 5,800</span></div>
       </div>
     </div>
     <div style="height:1px;background:rgba(196,168,130,0.2);margin:20px 0"></div>
     <div class="price-section">
-      <div class="price-category">
-        <div class="price-category-bar"></div>
-        <h3>眼 Eye</h3>
-      </div>
+      <div class="price-category"><div class="price-category-bar"></div><h3>眼 Eye</h3></div>
       <div class="price-row">
         <span class="item">美睫線</span>
         <div style="text-align:right"><span class="price">$ 2,500</span><span class="price-note">含補色 $ 3,900</span></div>
       </div>
       <div class="price-row">
         <span class="item">美瞳線</span>
-        <div style="text-align:right"><span class="price">$ 2,800</span><span class="price-note">含補色 $ 4,300</span></div>
+        <div style="text-align:right"><span class="price">$ 3,000</span><span class="price-note">含補色 $ 4,500</span></div>
       </div>
       <div class="price-row">
         <span class="item">妝感眼線</span>
-        <div style="text-align:right"><span class="price">$ 3,200</span><span class="price-note">含補色 $ 4,800</span></div>
+        <div style="text-align:right"><span class="price">$ 3,500</span><span class="price-note">含補色 $ 5,200</span></div>
       </div>
     </div>
     <div style="height:1px;background:rgba(196,168,130,0.2);margin:20px 0"></div>
     <div class="price-section">
-      <div class="price-category">
-        <div class="price-category-bar"></div>
-        <h3>唇 Lip</h3>
-      </div>
+      <div class="price-category"><div class="price-category-bar"></div><h3>唇 Lip</h3></div>
       <div class="price-row">
         <span class="item">新式霧唇</span>
-        <div style="text-align:right"><span class="price">$ 4,500</span><span class="price-note">含補色 $ 7,000</span></div>
+        <div style="text-align:right"><span class="price">$ 5,200</span><span class="price-note">含補色 $ 7,800</span></div>
       </div>
     </div>
   </div>
   <div class="card">
-    <div class="price-category">
-      <div class="price-category-bar"></div>
-      <h3>補色與預約規則</h3>
-    </div>
+    <div class="price-category"><div class="price-category-bar"></div><h3>補色與預約規則</h3></div>
     <ul class="bullet-list">
       <li><span class="bullet-dot">◆</span>補色期限：3 個月內（可提前預約保留一次）</li>
       <li><span class="bullet-dot">◆</span>超過期限：補色收「該項目原價 50%」</li>
@@ -468,6 +440,7 @@
   </div>
 </section>
 
+<!-- 美甲價目表 -->
 <section id="pricing-nail" class="section">
   <div class="section-header">
     <h2>美 甲 價 目 表</h2>
@@ -480,7 +453,10 @@
     <div class="price-row"><span class="item">貓眼／亮粉</span><span class="price-tag">$ 780</span></div>
     <div class="price-row"><span class="item">漸層</span><span class="price-tag">$ 900</span></div>
     <div class="price-row"><span class="item">法式</span><span class="price-tag">$ 1,000</span></div>
-    <div class="price-row"><span class="item">造型款 <span style="font-size:0.73rem;color:#C4A882">依款式複雜度報價</span></span><span class="price-tag">$ 1,100 up</span></div>
+    <div class="price-row">
+      <span class="item">造型款 <span style="font-size:0.73rem;color:#C4A882">依款式複雜度報價</span></span>
+      <span class="price-tag">$ 1,100 up</span>
+    </div>
   </div>
   <div class="card">
     <div class="price-category"><div class="price-category-bar"></div><h3>設計加購</h3></div>
@@ -508,10 +484,7 @@
           <span class="price-note">$ 1,399/十指</span>
         </div>
       </div>
-      <div class="price-row">
-        <span class="item" style="font-size:0.85rem">補裂甲</span>
-        <span class="price">$ 50 /指</span>
-      </div>
+      <div class="price-row"><span class="item" style="font-size:0.85rem">補裂甲</span><span class="price-tag">$ 50 /指</span></div>
     </div>
     <div class="card" style="margin-bottom:0">
       <div class="price-category"><div class="price-category-bar"></div><h3>卸甲</h3></div>
@@ -536,21 +509,9 @@
       <li><span class="bullet-dot">◆</span>造型款依款式複雜度報價，可提供圖片討論款式</li>
     </ul>
   </div>
-  <div class="card">
-    <div class="price-category"><div class="price-category-bar"></div><h3>美甲預約須知與規則</h3></div>
-    <div class="policy-grid">
-      <div class="policy-card"><div class="label">有事改期</div><div class="value">如需更改預約時間，請務必提前 3 天告知</div></div>
-      <div class="policy-card"><div class="label">臨時取消</div><div class="value">預約當天臨時取消，訂金恕不退還</div></div>
-      <div class="policy-card"><div class="label">遲到規定</div><div class="value">當天現場保留 10 分鐘</div></div>
-      <div class="policy-card"><div class="label">超時取消</div><div class="value">遲到超過 10 分鐘視同取消資格，訂金恕不退還</div></div>
-    </div>
-    <div class="highlight-box" style="margin-top:14px">
-      預約前請務必詳閱內容<br>
-      完成預約即視為同意所有預約規範，若有疑問歡迎私訊小編！
-    </div>
-  </div>
 </section>
 
+<!-- 角蛋白睫毛 -->
 <section id="keratin" class="section">
   <div class="section-header">
     <h2>角 蛋 白 睫 毛</h2>
