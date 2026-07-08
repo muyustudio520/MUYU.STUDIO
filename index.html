@@ -24,6 +24,10 @@ html, body {
 .hero-desc { font-size: 0.95rem; color: #6B5143; letter-spacing: 0.1em; }
 
 .nav-tabs { position: sticky; top: 0; z-index: 100; display: flex; background: rgba(245,240,235,0.97); border-bottom: 1px solid #D4C9BF; box-shadow: 0 2px 16px rgba(61,43,31,0.08); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.nav-hint { position: sticky; top: 0; z-index: 99; text-align: center; background: rgba(245,240,235,0.9); padding: 5px; font-size: 0.72rem; color: #C4A882; letter-spacing: 0.1em; }
+.nav-hint span { animation: hint-fade 2s ease-in-out infinite; display: inline-block; }
+@keyframes hint-fade { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 .nav-tab { padding: 16px 20px; font-size: 0.82rem; letter-spacing: 0.1em; color: #6B5143; cursor: pointer; border: none; background: none; white-space: nowrap; position: relative; -webkit-appearance: none; appearance: none; outline: none; -webkit-tap-highlight-color: transparent; }
 .nav-tab::after { content: ''; position: absolute; bottom: 0; left: 20%; right: 20%; height: 2px; background: #8B4A4A; transform: scaleX(0); transition: transform 0.3s; }
 .nav-tab.active { color: #8B4A4A; }
@@ -110,6 +114,8 @@ footer { text-align: center; padding: 36px 20px 120px; border-top: 1px solid rgb
   <button class="nav-tab" onclick="showSection('pricing-nail', this)">美甲價目表</button>
   <button class="nav-tab" onclick="showSection('keratin', this)">角蛋白睫毛</button>
 </nav>
+
+<div class="nav-hint"><span>← 左右滑動查看更多分頁 →</span></div>
 
 <!-- 霧眉問答 -->
 <section id="faq" class="section active">
